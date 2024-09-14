@@ -25,7 +25,7 @@ jobs:
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-kyes: |
+          restore-keys: |
             ${{ runner.os }}-node-$
       - name: Install dependencies
         run: npm ci
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-coverage-${{ matrix.os }}-${{ matrix.node }}
-          push: coverage
+          path: coverage
   lint:
     name: Lint
     runs-on: ubuntu-latest
